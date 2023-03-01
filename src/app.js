@@ -38,6 +38,7 @@ function randomSuit() {
 let drawbtn = document.querySelector(".drawButton");
 let sortbtn = document.querySelector(".sortButton");
 let amountCard = document.querySelector(".amountCard");
+let randomCards = document.querySelector(".randomCards");
 
 drawbtn.addEventListener("click", () => {
   let randomCards = document.querySelector(".randomCards");
