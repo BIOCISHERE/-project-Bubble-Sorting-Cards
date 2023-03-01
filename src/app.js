@@ -36,14 +36,16 @@ function randomSuit() {
 }
 
 let drawbtn = document.querySelector(".drawButton");
+let sortbtn = document.querySelector(".sortButton");
 let amountCard = document.querySelector(".amountCard");
 
 drawbtn.addEventListener("click", () => {
   let randomCards = document.querySelector(".randomCards");
   let numberOfCards = `${amountCard.value}`;
   let olCard = document.querySelector(".card");
+
   if (olCard == null) {
-    console.log("dosnt exist");
+    console.log("dosn't exist");
   } else {
     let child = randomCards.lastChild;
     while (child) {
@@ -60,3 +62,18 @@ drawbtn.addEventListener("click", () => {
     randomCards.appendChild(div);
   }
 });
+
+function bubbleSort(arr) {
+  for (let i = 0; i < arr.length - 1; i++) {
+    for (let j = 0; j < arr.length - 1; i++) {
+      if (arr[j] > arr[j + 1]) {
+        let aux = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = aux;
+      }
+    }
+  }
+  return arr;
+}
+let randomCards = document.querySelector(".randomCards");
+console.log(bubbleSort(randomCards));

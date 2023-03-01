@@ -19,6 +19,13 @@ button:hover {
 }
 .randomCards {
   display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.bubbleSortLog {
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .card {
   background: white;
