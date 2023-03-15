@@ -37,6 +37,7 @@ function randomSuit() {
 
 var cardObj = []; // array where the values and class of the cards are being pushed
 var sortCardObj = []; // array where the values of A, J, Q, K are going to be changed to numbers to be sorted correctly
+var finalCardObj = [];
 
 let drawbtn = document.querySelector(".drawButton");
 let sortbtn = document.querySelector(".sortButton");
@@ -44,7 +45,7 @@ let amountCard = document.querySelector(".amountCard");
 let randomCards = document.querySelector(".randomCards");
 let sortCards = document.querySelector(".bubbleSortLog");
 
-// draw button function start
+//<-- draw button function start -->
 drawbtn.addEventListener("click", () => {
   let randomCards = document.querySelector(".randomCards");
   let numberOfCards = `${amountCard.value}`;
@@ -78,47 +79,30 @@ drawbtn.addEventListener("click", () => {
 
   console.log(cardObj);
 });
-// draw funtion end
+// <-- draw funtion end -->
 
-/*
-function createSortCardDiv() {
-  var bubbleSortLog = document.querySelector(".bubbleSortLog");
-  var lastDiv = document.createElement("div");
-  lastDiv.classList.add("sortCard");
-
-  bubbleSortLog.appendChild(lastDiv);
-}
-*/
-/*
-function createSortCard() {
-  let lasdiv = document.querySelector(".sortCard");
-  let sortedCard = document.createElement("div");
-  sortedCard.classList.add(
-    `${sortCardObj[j].class[0]}`,
-    `${sortCardObj[j].class[1]}`
-  );
-  sortedCard.innerHTML = `${sortCardObj[a].value}`;
-
-  lasdiv.appendChild(sortedCard);
-}
-*/
-
-function bubbleSort(arr) {
-  for (let i = 0; i < arr.length - 1; i++) {
-    for (let j = 0; j < arr.length - 1; j++) {
-      if (parseInt(arr[j].value) > parseInt(arr[j + 1].value)) {
-        let aux = arr[j];
-        arr[j] = arr[j + 1];
-        arr[j + 1] = aux;
+const bubbleSort = arr => {
+  let wall = arr.length - 1;
+  while (wall > 0) {
+    let index = 0;
+    while (index < wall) {
+      if (parseInt(arr[index].value) > parseInt(arr[index + 1].value)) {
+        let aux = arr[index];
+        arr[index] = arr[index + 1];
+        arr[index + 1] = aux;
       }
+      finalCardObj.push(sortCardObj);
+      index++;
     }
+    wall--;
   }
   return arr;
-}
+};
 
 sortbtn.addEventListener("click", () => {
   let bubbleSortLog = document.querySelector(".bubbleSortLog");
   let olCard = document.querySelector(".sortedCard");
+  console.log("aqui empieza");
 
   if (olCard == null) {
     console.log("dosn't exist");
@@ -176,37 +160,6 @@ sortbtn.addEventListener("click", () => {
   }
 
   //console.log(sortCardObj[0].class[0]);
-  console.log(sortCardObj);
+  //console.log(sortCardObj);
+  console.log(finalCardObj);
 });
-
-/*
-  let objIndexA = sortCardObj.findIndex(obj => obj.value == "A");
-  let objIndexJ = sortCardObj.findIndex(obj => obj.value == "J");
-  let objIndexQ = sortCardObj.findIndex(obj => obj.value == "Q");
-  let objIndexK = sortCardObj.findIndex(obj => obj.value == "K"); */
-
-/*
-  console.log(sortCardObj[objIndexA]);
-  console.log(sortCardObj[objIndexJ]);
-  console.log(sortCardObj[objIndexQ]);
-  console.log(sortCardObj[objIndexK]); 
-  */
-/*
-  for (let a = 0; a < 1; a++) {
-    if (sortCardObj[objIndexA]) {
-      sortCardObj[objIndexA].value = "1";
-      console.log("changed A value to 1");
-    }
-    if (sortCardObj[objIndexJ]) {
-      sortCardObj[objIndexJ].value = "11";
-      console.log("changed J value to 11");
-    }
-    if (sortCardObj[objIndexQ]) {
-      sortCardObj[objIndexQ].value = "12";
-      console.log("changed Q value to 12");
-    }
-    if (sortCardObj[objIndexK]) {
-      sortCardObj[objIndexK].value = "13";
-      console.log("changed K value to 13");
-    }
-  } */
