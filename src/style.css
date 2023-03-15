@@ -70,3 +70,6 @@ button:hover {
   content: "\2666";
   color: red;
 }
+.sortCard {
+  display: flex;
+}
