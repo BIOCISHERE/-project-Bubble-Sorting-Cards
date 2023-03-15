@@ -117,6 +117,19 @@ function bubbleSort(arr) {
 }
 
 sortbtn.addEventListener("click", () => {
+  let bubbleSortLog = document.querySelector(".bubbleSortLog");
+  let olCard = document.querySelector(".sortedCard");
+
+  if (olCard == null) {
+    console.log("dosn't exist");
+  } else {
+    let child = bubbleSortLog.lastChild;
+    while (child) {
+      bubbleSortLog.removeChild(child);
+      child = bubbleSortLog.lastChild;
+    }
+  }
+
   for (var a in sortCardObj) {
     if (sortCardObj[a].value == "A") {
       sortCardObj[a].value = "1";
@@ -152,6 +165,7 @@ sortbtn.addEventListener("click", () => {
   for (let b = 0; b < sortCardObj.length; b++) {
     let bubbleSortLog = document.querySelector(".bubbleSortLog");
     let finalCard = document.createElement("div");
+    finalCard.classList.add("sortedCard");
     finalCard.classList.add(
       `${sortCardObj[b].class[0]}`,
       `${sortCardObj[b].class[1]}`
