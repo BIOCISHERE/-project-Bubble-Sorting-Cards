@@ -22,12 +22,25 @@ button:hover {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-.bubbleSortLog {
+.bubbleSortLogDiv {
   display: flex;
   margin-top: 10px;
   margin-bottom: 10px;
 }
 .card {
+  background: white;
+  text-align: center;
+  box-sizing: border-box;
+  padding-top: 30px;
+  width: 80px;
+  height: 100px;
+  margin: 10px;
+  border: 2px solid black;
+  border-radius: 10px;
+  position: relative;
+  font-size: 25px;
+}
+.sortedCard {
   background: white;
   text-align: center;
   box-sizing: border-box;

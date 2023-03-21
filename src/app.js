@@ -37,7 +37,6 @@ function randomSuit() {
 
 var cardObj = []; // array where the values and class of the cards are being pushed
 var sortCardObj = []; // array where the values of A, J, Q, K are going to be changed to numbers to be sorted correctly
-var finalCardObj = [];
 
 let drawbtn = document.querySelector(".drawButton");
 let sortbtn = document.querySelector(".sortButton");
@@ -80,7 +79,7 @@ drawbtn.addEventListener("click", () => {
   console.log(cardObj);
 });
 // <-- draw funtion end -->
-
+/*
 const bubbleSort = arr => {
   let wall = arr.length - 1;
   while (wall > 0) {
@@ -96,13 +95,13 @@ const bubbleSort = arr => {
     }
     wall--;
   }
+  console.log(arr);
   return arr;
 };
-
+*/
 sortbtn.addEventListener("click", () => {
   let bubbleSortLog = document.querySelector(".bubbleSortLog");
   let olCard = document.querySelector(".sortedCard");
-  console.log("aqui empieza");
 
   if (olCard == null) {
     console.log("dosn't exist");
@@ -114,7 +113,7 @@ sortbtn.addEventListener("click", () => {
     }
   }
 
-  for (var a in sortCardObj) {
+  for (let a = 0; a < sortCardObj.length; a++) {
     if (sortCardObj[a].value == "A") {
       sortCardObj[a].value = "1";
     }
@@ -127,39 +126,54 @@ sortbtn.addEventListener("click", () => {
     if (sortCardObj[a].value == "K") {
       sortCardObj[a].value = "13";
     }
+    console.log(sortCardObj[a].value);
   }
 
-  bubbleSort(sortCardObj);
+  let wall = sortCardObj.length - 1;
+  while (wall > 0) {
+    let index = 0;
+    while (index < wall) {
+      if (
+        parseInt(sortCardObj[index].value) >
+        parseInt(sortCardObj[index + 1].value)
+      ) {
+        let aux = sortCardObj[index];
+        sortCardObj[index] = sortCardObj[index + 1];
+        sortCardObj[index + 1] = aux;
 
-  for (var j in sortCardObj) {
-    if (sortCardObj[j].value == "1") {
-      sortCardObj[j].value = "A";
+        for (let c = 0; c < sortCardObj.length; c++) {
+          if (sortCardObj[c].value == "1") {
+            sortCardObj[c].value = "A";
+          }
+          if (sortCardObj[c].value == "11") {
+            sortCardObj[c].value = "J";
+          }
+          if (sortCardObj[c].value == "12") {
+            sortCardObj[c].value = "Q";
+          }
+          if (sortCardObj[c].value == "13") {
+            sortCardObj[c].value = "K";
+          }
+        }
+
+        let finaldiv = document.createElement("div");
+        finaldiv.classList.add("bubbleSortLogDiv");
+        for (let b = 0; b < sortCardObj.length; b++) {
+          let bubbleSortLog = document.querySelector(".bubbleSortLog");
+          let finalCard = document.createElement("div");
+          finalCard.classList.add("sortedCard");
+          finalCard.classList.add(
+            `${sortCardObj[b].class[0]}`,
+            `${sortCardObj[b].class[1]}`
+          );
+          finalCard.innerHTML = `${sortCardObj[b].value}`;
+
+          finaldiv.appendChild(finalCard);
+          bubbleSortLog.appendChild(finaldiv);
+        }
+      }
+      index++;
     }
-    if (sortCardObj[j].value == "11") {
-      sortCardObj[j].value = "J";
-    }
-    if (sortCardObj[j].value == "12") {
-      sortCardObj[j].value = "Q";
-    }
-    if (sortCardObj[j].value == "13") {
-      sortCardObj[j].value = "K";
-    }
+    wall--;
   }
-
-  for (let b = 0; b < sortCardObj.length; b++) {
-    let bubbleSortLog = document.querySelector(".bubbleSortLog");
-    let finalCard = document.createElement("div");
-    finalCard.classList.add("sortedCard");
-    finalCard.classList.add(
-      `${sortCardObj[b].class[0]}`,
-      `${sortCardObj[b].class[1]}`
-    );
-    finalCard.innerHTML = `${sortCardObj[b].value}`;
-
-    bubbleSortLog.appendChild(finalCard);
-  }
-
-  //console.log(sortCardObj[0].class[0]);
-  //console.log(sortCardObj);
-  console.log(finalCardObj);
 });
