@@ -10,9 +10,47 @@ window.onload = function() {
   console.log("Hello Rigo from the console!");
 };
 
+function toLetter(el) {
+  switch (el) {
+    case "1":
+      return "A";
+      break;
+    case "11":
+      return "J";
+      break;
+    case "12":
+      return "Q";
+      break;
+    case "13":
+      return "K";
+      break;
+    default:
+      return el;
+  }
+}
+
+function toNumber(el) {
+  switch (el) {
+    case "A":
+      return "1";
+      break;
+    case "J":
+      return "11";
+      break;
+    case "Q":
+      return "12";
+      break;
+    case "K":
+      return "13";
+      break;
+    default:
+      return el;
+  }
+}
+
 function randomNumber() {
   let number = [
-    "A",
+    "1",
     "2",
     "3",
     "4",
@@ -22,9 +60,9 @@ function randomNumber() {
     "8",
     "9",
     "10",
-    "J",
-    "Q",
-    "K"
+    "11",
+    "12",
+    "13"
   ];
   let indexNumber = Math.floor(Math.random() * number.length);
   return number[indexNumber];
@@ -67,10 +105,13 @@ drawbtn.addEventListener("click", () => {
     let div = document.createElement("div");
     div.classList.add("card");
     div.classList.add(randomSuit());
-    div.innerHTML = randomNumber();
+    div.innerHTML = toLetter(randomNumber());
 
     randomCards.appendChild(div);
-    cardObj.push({ value: div.innerHTML, class: div.className.split(" ") });
+    cardObj.push({
+      value: toNumber(div.innerHTML),
+      class: div.className.split(" ")
+    });
   }
   for (let j = 0; j < cardObj.length; j++) {
     sortCardObj.push(cardObj[j]);
@@ -113,7 +154,7 @@ sortbtn.addEventListener("click", () => {
     }
   }
 
-  for (let a = 0; a < sortCardObj.length; a++) {
+  /*for (let a = 0; a < sortCardObj.length; a++) {
     if (sortCardObj[a].value == "A") {
       sortCardObj[a].value = "1";
     }
@@ -127,7 +168,7 @@ sortbtn.addEventListener("click", () => {
       sortCardObj[a].value = "13";
     }
     console.log(sortCardObj[a].value);
-  }
+  }*/
 
   let wall = sortCardObj.length - 1;
   while (wall > 0) {
@@ -141,21 +182,6 @@ sortbtn.addEventListener("click", () => {
         sortCardObj[index] = sortCardObj[index + 1];
         sortCardObj[index + 1] = aux;
 
-        for (let c = 0; c < sortCardObj.length; c++) {
-          if (sortCardObj[c].value == "1") {
-            sortCardObj[c].value = "A";
-          }
-          if (sortCardObj[c].value == "11") {
-            sortCardObj[c].value = "J";
-          }
-          if (sortCardObj[c].value == "12") {
-            sortCardObj[c].value = "Q";
-          }
-          if (sortCardObj[c].value == "13") {
-            sortCardObj[c].value = "K";
-          }
-        }
-
         let finaldiv = document.createElement("div");
         finaldiv.classList.add("bubbleSortLogDiv");
         for (let b = 0; b < sortCardObj.length; b++) {
@@ -166,7 +192,7 @@ sortbtn.addEventListener("click", () => {
             `${sortCardObj[b].class[0]}`,
             `${sortCardObj[b].class[1]}`
           );
-          finalCard.innerHTML = `${sortCardObj[b].value}`;
+          finalCard.innerHTML = toLetter(`${sortCardObj[b].value}`);
 
           finaldiv.appendChild(finalCard);
           bubbleSortLog.appendChild(finaldiv);
