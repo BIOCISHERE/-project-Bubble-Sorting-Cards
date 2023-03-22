@@ -116,30 +116,10 @@ drawbtn.addEventListener("click", () => {
   for (let j = 0; j < cardObj.length; j++) {
     sortCardObj.push(cardObj[j]);
   }
-
-  console.log(cardObj);
 });
-// <-- draw funtion end -->
-/*
-const bubbleSort = arr => {
-  let wall = arr.length - 1;
-  while (wall > 0) {
-    let index = 0;
-    while (index < wall) {
-      if (parseInt(arr[index].value) > parseInt(arr[index + 1].value)) {
-        let aux = arr[index];
-        arr[index] = arr[index + 1];
-        arr[index + 1] = aux;
-      }
-      finalCardObj.push(sortCardObj);
-      index++;
-    }
-    wall--;
-  }
-  console.log(arr);
-  return arr;
-};
-*/
+// <-- draw button function end -->
+
+// <-- sort button function start -->
 sortbtn.addEventListener("click", () => {
   let bubbleSortLog = document.querySelector(".bubbleSortLog");
   let olCard = document.querySelector(".sortedCard");
@@ -154,22 +134,7 @@ sortbtn.addEventListener("click", () => {
     }
   }
 
-  /*for (let a = 0; a < sortCardObj.length; a++) {
-    if (sortCardObj[a].value == "A") {
-      sortCardObj[a].value = "1";
-    }
-    if (sortCardObj[a].value == "J") {
-      sortCardObj[a].value = "11";
-    }
-    if (sortCardObj[a].value == "Q") {
-      sortCardObj[a].value = "12";
-    }
-    if (sortCardObj[a].value == "K") {
-      sortCardObj[a].value = "13";
-    }
-    console.log(sortCardObj[a].value);
-  }*/
-
+  //bubble sort function (adapted to work with the exercise)
   let wall = sortCardObj.length - 1;
   while (wall > 0) {
     let index = 0;
@@ -203,3 +168,4 @@ sortbtn.addEventListener("click", () => {
     wall--;
   }
 });
+// <-- sort button function end -->
